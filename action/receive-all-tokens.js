@@ -1,9 +1,10 @@
 
 // One entry in the store is like this:
 // tokeny000: {
-//    name:      <display name>
+//    account:   <display name>
 //    issuer:    <issuer>
-//    factor:    totp/hotp
+//    key:       <key>
+//    type:      totp/hotp
 //    algorithm: SHA1/SHA256/SHA512
 //    digits:    6
 // }

@@ -18,7 +18,6 @@ let USER_ACCOUNT = "tokeny"
 //    factor:    totp/hotp
 //    algorithm: SHA1/SHA256/SHA512
 //    digits:    6
-//    order:     0-n, display order number in list in UI
 // }
 
 @objc(KeychainStore)
@@ -40,16 +39,18 @@ class KeychainStore: NSObject {
   func saveAll(dict: [String:AnyObject], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) {
     
     // delete all data already there before saving the new stuff
-//    do {
-//      try Locksmith.deleteDataForUserAccount(userAccount: USER_ACCOUNT)
-//    } catch {
-//      reject("", "saveAll delete failed", error)
-//      return
-//    }
+    do {
+      try Locksmith.deleteDataForUserAccount(userAccount: USER_ACCOUNT)
+    } catch {
+      print(error)
+      reject("", "saveAll delete failed", error)
+      return
+    }
  
     do {
       try Locksmith.saveData(data: dict, forUserAccount: USER_ACCOUNT)
     } catch {
+      print(error)
       reject("", "saveAll failed", error)
       return
     }

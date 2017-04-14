@@ -11,7 +11,8 @@
     "react-native": "0.42.0",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "refnux": "^16.0.0-alpha.6",
-    "thirty-two": "^1.0.2"
+    "thirty-two": "^1.0.2",
+    "url-otpauth": "^2.0.0"
   },
   "devDependencies": {
     "babel-preset-react-native": "1.9.1"
