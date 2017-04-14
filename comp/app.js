@@ -5,7 +5,7 @@ import {
   Text,
   StatusBar,
   NavigatorIOS,
-} from 'react-native';
+} from 'react-native'
 import List from './list'
 import Camera from './camera'
 

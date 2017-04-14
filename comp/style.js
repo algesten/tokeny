@@ -21,6 +21,12 @@ export default (() => {
     },
     text: {
       color: t.foreground,
+      fontSize: 15,
+    },
+    listText: {
+      color: t.foreground,
+      fontSize: 15,
+      fontWeight: '400',
     },
   })
 

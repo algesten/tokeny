@@ -24,7 +24,7 @@ const orderNoOf = (() => {
 
 export default (dict) => {
 
-  console.log('receiveAllTokens ', dict)
+  console.log('receiveAllTokens ')
 
   return (state) => {
 
