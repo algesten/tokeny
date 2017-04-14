@@ -7,6 +7,7 @@ import {
   NavigatorIOS,
 } from 'react-native';
 import List from './list'
+import Camera from './camera'
 
 export default connect((state, dispatch) => {
 
@@ -22,6 +23,15 @@ export default connect((state, dispatch) => {
         translucent: true,
         leftButtonSystemIcon:  'compose',
         rightButtonSystemIcon: 'add',
+        onRightButtonPress: () => {
+          dispatch((state) => {
+            state.navigator.push({
+              component: Camera,
+              title: 'Add code',
+            })
+            return {}
+          })
+        },
       }}
       style={{flex:1}}>
     </NavigatorIOS>

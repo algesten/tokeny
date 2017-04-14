@@ -25,11 +25,18 @@ var dataSource = new ListView.DataSource({
   getSectionHeaderData: (dataBlob, sectionID) => {}
 })
 
-export default connect((state, dispatch) => {
+export default connect((state, dispatch, props) => {
 
   // we pass state in as datasource, and specify the articles is
   // the key to our articles. sectionID will then be 'articles'
   dataSource = dataSource.cloneWithRowsAndSections(state, ['tokens'])
+
+  // hackety hacks
+  if (state.navigator != props.navigator) {
+    later(() => {
+      dispatch(() => {return {navigator:props.navigator}})
+    })
+  }
 
   return (
     <View style={{flex:1}}>
