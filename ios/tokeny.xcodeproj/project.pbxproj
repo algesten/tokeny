@@ -20,6 +20,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		5B513FB61EA1495000D4EF59 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B513FB41EA1495000D4EF59 /* Interface.storyboard */; };
+		5B513FB81EA1495000D4EF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B513FB71EA1495000D4EF59 /* Assets.xcassets */; };
+		5B513FBF1EA1495100D4EF59 /* tokeny watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5B513FBE1EA1495100D4EF59 /* tokeny watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5B513FC41EA1495100D4EF59 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B513FC31EA1495100D4EF59 /* InterfaceController.swift */; };
+		5B513FC61EA1495100D4EF59 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B513FC51EA1495100D4EF59 /* ExtensionDelegate.swift */; };
+		5B513FC81EA1495100D4EF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B513FC71EA1495100D4EF59 /* Assets.xcassets */; };
+		5B513FCC1EA1495100D4EF59 /* tokeny watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5B513FB21EA1495000D4EF59 /* tokeny watch.app */; };
 		5BB0C6BA1EA0E384009F0E56 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */; };
 		5BB0C6BB1EA0E384009F0E56 /* KeychainStoreBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */; };
 		5BB0C6BE1EA0E499009F0E56 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB0C6BD1EA0E499009F0E56 /* Locksmith.framework */; };
@@ -176,6 +183,20 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		5B513FC01EA1495100D4EF59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B513FBD1EA1495000D4EF59;
+			remoteInfo = "tokeny watch Extension";
+		};
+		5B513FCA1EA1495100D4EF59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B513FB11EA1495000D4EF59;
+			remoteInfo = "tokeny watch";
+		};
 		5BB0C6D11EA0E682009F0E56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B59852ABD5B74054A3E1C206 /* RCTCamera.xcodeproj */;
@@ -213,6 +234,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5B513FEC1EA1495100D4EF59 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5B513FBF1EA1495100D4EF59 /* tokeny watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B513FEE1EA1495100D4EF59 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				5B513FCC1EA1495100D4EF59 /* tokeny watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -231,6 +277,15 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		5B2274801EA132CC002C0ED7 /* tokeny.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tokeny.entitlements; sourceTree = "<group>"; };
+		5B513FB21EA1495000D4EF59 /* tokeny watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tokeny watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B513FB51EA1495000D4EF59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		5B513FB71EA1495000D4EF59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5B513FB91EA1495000D4EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B513FBE1EA1495100D4EF59 /* tokeny watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "tokeny watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B513FC31EA1495100D4EF59 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		5B513FC51EA1495100D4EF59 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		5B513FC71EA1495100D4EF59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5B513FC91EA1495100D4EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BB0C6B71EA0E384009F0E56 /* tokeny-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tokeny-Bridging-Header.h"; sourceTree = "<group>"; };
 		5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainStoreBridge.m; sourceTree = "<group>"; };
@@ -260,6 +315,13 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				F4A7511B5AE14C44BD6FC73C /* libRCTCamera.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B513FBB1EA1495000D4EF59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +421,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5B513FB31EA1495000D4EF59 /* tokeny watch */ = {
+			isa = PBXGroup;
+			children = (
+				5B513FB41EA1495000D4EF59 /* Interface.storyboard */,
+				5B513FB71EA1495000D4EF59 /* Assets.xcassets */,
+				5B513FB91EA1495000D4EF59 /* Info.plist */,
+			);
+			path = "tokeny watch";
+			sourceTree = "<group>";
+		};
+		5B513FC21EA1495100D4EF59 /* tokeny watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5B513FC31EA1495100D4EF59 /* InterfaceController.swift */,
+				5B513FC51EA1495100D4EF59 /* ExtensionDelegate.swift */,
+				5B513FC71EA1495100D4EF59 /* Assets.xcassets */,
+				5B513FC91EA1495100D4EF59 /* Info.plist */,
+			);
+			path = "tokeny watch Extension";
+			sourceTree = "<group>";
+		};
 		5BB0C6BC1EA0E499009F0E56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,9 +508,11 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAE1A68108700A75B9A /* tokeny */,
+				5B513FB31EA1495000D4EF59 /* tokeny watch */,
+				5B513FC21EA1495100D4EF59 /* tokeny watch Extension */,
+				5BB0C6BC1EA0E499009F0E56 /* Frameworks */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-				5BB0C6BC1EA0E499009F0E56 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -437,6 +522,8 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* tokeny.app */,
+				5B513FB21EA1495000D4EF59 /* tokeny watch.app */,
+				5B513FBE1EA1495100D4EF59 /* tokeny watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,15 +540,51 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5BB0C6BF1EA0E4A5009F0E56 /* ShellScript */,
+				5B513FEE1EA1495100D4EF59 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5B513FCB1EA1495100D4EF59 /* PBXTargetDependency */,
 			);
 			name = tokeny;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* tokeny.app */;
 			productType = "com.apple.product-type.application";
+		};
+		5B513FB11EA1495000D4EF59 /* tokeny watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B513FED1EA1495100D4EF59 /* Build configuration list for PBXNativeTarget "tokeny watch" */;
+			buildPhases = (
+				5B513FB01EA1495000D4EF59 /* Resources */,
+				5B513FEC1EA1495100D4EF59 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B513FC11EA1495100D4EF59 /* PBXTargetDependency */,
+			);
+			name = "tokeny watch";
+			productName = "tokeny watch";
+			productReference = 5B513FB21EA1495000D4EF59 /* tokeny watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		5B513FBD1EA1495000D4EF59 /* tokeny watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B513FEB1EA1495100D4EF59 /* Build configuration list for PBXNativeTarget "tokeny watch Extension" */;
+			buildPhases = (
+				5B513FBA1EA1495000D4EF59 /* Sources */,
+				5B513FBB1EA1495000D4EF59 /* Frameworks */,
+				5B513FBC1EA1495000D4EF59 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "tokeny watch Extension";
+			productName = "tokeny watch Extension";
+			productReference = 5B513FBE1EA1495100D4EF59 /* tokeny watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -469,8 +592,9 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 610;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = "Objekt & Funktion AB";
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 59KQ35ZTG6;
@@ -481,6 +605,16 @@
 								enabled = 1;
 							};
 						};
+					};
+					5B513FB11EA1495000D4EF59 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 59KQ35ZTG6;
+						ProvisioningStyle = Automatic;
+					};
+					5B513FBD1EA1495000D4EF59 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = CX62B2LMS2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -548,6 +682,8 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* tokeny */,
+				5B513FB11EA1495000D4EF59 /* tokeny watch */,
+				5B513FBD1EA1495000D4EF59 /* tokeny watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -747,6 +883,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B513FB01EA1495000D4EF59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B513FB81EA1495000D4EF59 /* Assets.xcassets in Resources */,
+				5B513FB61EA1495000D4EF59 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B513FBC1EA1495000D4EF59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B513FC81EA1495100D4EF59 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -792,7 +945,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B513FBA1EA1495000D4EF59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B513FC61EA1495100D4EF59 /* ExtensionDelegate.swift in Sources */,
+				5B513FC41EA1495100D4EF59 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B513FC11EA1495100D4EF59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B513FBD1EA1495000D4EF59 /* tokeny watch Extension */;
+			targetProxy = 5B513FC01EA1495100D4EF59 /* PBXContainerItemProxy */;
+		};
+		5B513FCB1EA1495100D4EF59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B513FB11EA1495000D4EF59 /* tokeny watch */;
+			targetProxy = 5B513FCA1EA1495100D4EF59 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
@@ -801,6 +976,14 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		5B513FB41EA1495000D4EF59 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B513FB51EA1495000D4EF59 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -881,6 +1064,114 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "tokeny/tokeny-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		5B513FCD1EA1495100D4EF59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 59KQ35ZTG6;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = tokeny_watch_Extension;
+				INFOPLIST_FILE = "tokeny watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = se.objf.tokeny.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		5B513FCE1EA1495100D4EF59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 59KQ35ZTG6;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = tokeny_watch_Extension;
+				INFOPLIST_FILE = "tokeny watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = se.objf.tokeny.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		5B513FCF1EA1495100D4EF59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = CX62B2LMS2;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "tokeny watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = se.objf.tokeny.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		5B513FD01EA1495100D4EF59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CX62B2LMS2;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "tokeny watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = se.objf.tokeny.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};
 			name = Release;
 		};
@@ -971,6 +1262,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5B513FEB1EA1495100D4EF59 /* Build configuration list for PBXNativeTarget "tokeny watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B513FCF1EA1495100D4EF59 /* Debug */,
+				5B513FD01EA1495100D4EF59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5B513FED1EA1495100D4EF59 /* Build configuration list for PBXNativeTarget "tokeny watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B513FCD1EA1495100D4EF59 /* Debug */,
+				5B513FCE1EA1495100D4EF59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "tokeny" */ = {
 			isa = XCConfigurationList;

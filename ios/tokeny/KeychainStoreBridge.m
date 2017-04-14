@@ -1,11 +1,3 @@
-//
-//  KeychainStoreBridge.m
-//  tokeny
-//
-//  Created by martin on 2017-04-14.
-//  Copyright © 2017 Facebook. All rights reserved.
-//
-
 #import <React/RCTBridgeModule.h>
 //#import "tokeny-Swift.h"
 
