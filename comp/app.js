@@ -28,6 +28,9 @@ export default connect((state, dispatch) => {
             state.navigator.push({
               component: Camera,
               title: 'Add code',
+              barTintColor: '#000',
+              titleTextColor: '#2a7af6',
+              translucent: true,
             })
             return {}
           })
