@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -48,7 +48,7 @@
         <!--Tocan-->
         <scene sceneID="5Sk-vo-YMr">
             <objects>
-                <controller title="Tocan" id="hj2-0V-lwh" customClass="TokenViewController" customModule="tokeny_watch_Extension">
+                <controller title="Tocan" spacing="0.0" id="hj2-0V-lwh" customClass="TokenViewController" customModule="tokeny_watch_Extension">
                     <items>
                         <group width="130" height="130" alignment="left" radius="0.0" spacing="0.0" id="b0P-TF-2wL">
                             <items>
@@ -71,7 +71,7 @@
                                     </variation>
                                 </group>
                             </items>
-                            <variation key="device=watch42mm" height="156" width="156"/>
+                            <variation key="device=watch42mm" height="154" width="154"/>
                         </group>
                         <label width="1" alignment="left" text="martin@algesten.se" textAlignment="center" minimumScaleFactor="0.59999999999999998" id="2dd-0s-uKt">
                             <color key="textColor" red="1" green="0.83579093217849731" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -85,7 +85,8 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="379" y="103"/>
+            <point key="canvasLocation" x="292" y="69"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -19,7 +19,7 @@ export default connect((state, dispatch) => {
   // setTimeout(()=>{
   //   Vibration.vibrate()
   //   navigator.pop()
-  //   dispatch(addToken('otpauth://totp/Example:bob@google.com?secret=JBSWY3DTEHPK3PXP&issuer=Example'))
+  //   dispatch(addToken('otpauth://totp/Example:amy@google.com?secret=JBSWY3DKEHPK3PXP&issuer=Example'))
   // }, 1000)
 
   return (

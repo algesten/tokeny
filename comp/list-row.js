@@ -41,8 +41,7 @@ export default class ListRow extends Component {
   render() {
     const token = this.props.token
     return (
-      <View style={{}}>
-        <View style={{padding:15}}>
+      <View style={{padding:15, backgroundColor:'#000'}}>
           <Text style={[style.listText, {fontSize:60, fontWeight:'200'}]}>
             {authenticator.generate(token.key)}
           </Text>
@@ -52,7 +51,6 @@ export default class ListRow extends Component {
             <Text style={[style.listText, {color:style.theme.yellow}]}>{token.account || ''}</Text>
           </View>
         </View>
-      </View>
     )
   }
 

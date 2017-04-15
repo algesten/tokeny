@@ -14,6 +14,8 @@ class KeychainStore: NSObject {
   func saveAll(tokens: [[String:AnyObject]], resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) {
 
     if Keychain.instance.addAll(tokens: tokens) {
+      // now tell the watch. if it's there
+      WatchSessionDelegate.instance.sendAllTokens()
       // all good then
       resolve(nil)
     } else {
