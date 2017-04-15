@@ -1,10 +1,12 @@
 import Foundation
 
 private let kOTPService = "se.objf.tokeny.token"
-private let kKeyURL = "url"
-private let kKeyIssuer = "issuer"
-private let kKeyAccount = "account"
-private let kKeyOrdinal = "ordinal"
+
+// these 4 things are needed to save a token to the keychain
+let kKeyURL = "url"
+let kKeyIssuer = "issuer"
+let kKeyAccount = "account"
+let kKeyOrdinal = "ordinal"
 
 class Keychain {
 

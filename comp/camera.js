@@ -16,11 +16,11 @@ import addToken from '../action/add-token'
 export default connect((state, dispatch) => {
   const {navigator} = state
 
-  setTimeout(()=>{
-    Vibration.vibrate()
-    navigator.pop()
-    dispatch(addToken('otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example'))
-  }, 1000)
+  // setTimeout(()=>{
+  //   Vibration.vibrate()
+  //   navigator.pop()
+  //   dispatch(addToken('otpauth://totp/Example:bob@google.com?secret=JBSWY3DTEHPK3PXP&issuer=Example'))
+  // }, 1000)
 
   return (
     <Camera

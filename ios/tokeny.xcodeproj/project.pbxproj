@@ -29,9 +29,10 @@
 		5B513FCC1EA1495100D4EF59 /* tokeny watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5B513FB21EA1495000D4EF59 /* tokeny watch.app */; };
 		5B513FF11EA14C4200D4EF59 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B513FEF1EA14C4200D4EF59 /* Base32.framework */; };
 		5B513FF21EA14C4200D4EF59 /* OneTimePassword.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B513FF01EA14C4200D4EF59 /* OneTimePassword.framework */; };
-		5B513FF71EA14D9500D4EF59 /* WatchKeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B513FF61EA14D9500D4EF59 /* WatchKeychainStore.swift */; };
 		5B9461211EA2030300D35B39 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461201EA2030300D35B39 /* Keychain.swift */; };
 		5B9461221EA2030300D35B39 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461201EA2030300D35B39 /* Keychain.swift */; };
+		5B9461241EA2386E00D35B39 /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */; };
+		5B9461271EA2519400D35B39 /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461261EA2519400D35B39 /* TokenViewController.swift */; };
 		5BB0C6BA1EA0E384009F0E56 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */; };
 		5BB0C6BB1EA0E384009F0E56 /* KeychainStoreBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -293,9 +294,10 @@
 		5B513FEF1EA14C4200D4EF59 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/watchOS/Base32.framework; sourceTree = "<group>"; };
 		5B513FF01EA14C4200D4EF59 /* OneTimePassword.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneTimePassword.framework; path = Carthage/Build/watchOS/OneTimePassword.framework; sourceTree = "<group>"; };
 		5B513FF41EA14D3B00D4EF59 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/watchOS/Locksmith.framework; sourceTree = "<group>"; };
-		5B513FF61EA14D9500D4EF59 /* WatchKeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchKeychainStore.swift; sourceTree = "<group>"; };
 		5B94611F1EA1FC8F00D35B39 /* tokeny watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "tokeny watch Extension.entitlements"; sourceTree = "<group>"; };
 		5B9461201EA2030300D35B39 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
+		5B9461261EA2519400D35B39 /* TokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenViewController.swift; sourceTree = "<group>"; };
 		5BB0C6B71EA0E384009F0E56 /* tokeny-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tokeny-Bridging-Header.h"; sourceTree = "<group>"; };
 		5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainStoreBridge.m; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				5BB0C6B71EA0E384009F0E56 /* tokeny-Bridging-Header.h */,
 				5B2274801EA132CC002C0ED7 /* tokeny.entitlements */,
 				5B9461201EA2030300D35B39 /* Keychain.swift */,
+				5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */,
 			);
 			path = tokeny;
 			sourceTree = "<group>";
@@ -446,12 +449,12 @@
 		5B513FC21EA1495100D4EF59 /* tokeny watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5B94611F1EA1FC8F00D35B39 /* tokeny watch Extension.entitlements */,
 				5B513FC71EA1495100D4EF59 /* Assets.xcassets */,
 				5B513FC51EA1495100D4EF59 /* ExtensionDelegate.swift */,
 				5B513FC91EA1495100D4EF59 /* Info.plist */,
 				5B513FC31EA1495100D4EF59 /* InterfaceController.swift */,
-				5B513FF61EA14D9500D4EF59 /* WatchKeychainStore.swift */,
+				5B9461261EA2519400D35B39 /* TokenViewController.swift */,
+				5B94611F1EA1FC8F00D35B39 /* tokeny watch Extension.entitlements */,
 			);
 			path = "tokeny watch Extension";
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BB0C6BA1EA0E384009F0E56 /* KeychainStore.swift in Sources */,
+				5B9461241EA2386E00D35B39 /* WatchSessionDelegate.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				5BB0C6BB1EA0E384009F0E56 /* KeychainStoreBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
@@ -987,10 +991,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9461271EA2519400D35B39 /* TokenViewController.swift in Sources */,
 				5B513FC61EA1495100D4EF59 /* ExtensionDelegate.swift in Sources */,
 				5B9461221EA2030300D35B39 /* Keychain.swift in Sources */,
 				5B513FC41EA1495100D4EF59 /* InterfaceController.swift in Sources */,
-				5B513FF71EA14D9500D4EF59 /* WatchKeychainStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

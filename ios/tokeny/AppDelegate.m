@@ -2,11 +2,21 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "tokeny-Swift.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  
+  // and start watch session if there
+  // do this very early on
+  if ([WCSession isSupported]) {
+    WCSession* session = [WCSession defaultSession];
+    session.delegate = WatchSessionDelegate.instance; // before activate
+    [session activateSession];
+  }
+  
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];

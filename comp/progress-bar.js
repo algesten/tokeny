@@ -28,7 +28,7 @@ export default class ProgressBar extends Component {
           top:64, left:0, right: 0, height:1,
           backgroundColor:'transparent'
         }}
-        progress={this.state.progress}
+        progress={1 - this.state.progress}
         progressViewStyle='bar'
         progressTintColor='#f00'
         />

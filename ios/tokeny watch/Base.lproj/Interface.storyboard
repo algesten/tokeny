@@ -1,15 +1,91 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Tocan-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller title="Tocan" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="tokeny_watch" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="XkV-nR-jg2">
+                            <items>
+                                <tableRow identifier="TokenRowController" id="s9f-5T-xgk" customClass="TokenRowController" customModule="tokeny_watch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="2SX-oO-KIp">
+                                        <items>
+                                            <label alignment="left" text="github" minimumScaleFactor="0.59999999999999998" id="HIm-cz-YPP">
+                                                <color key="textColor" red="1" green="0.3411764705882353" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </label>
+                                            <label alignment="left" text="martin@algesten.se" minimumScaleFactor="0.59999999999999998" id="6l9-xS-fTr">
+                                                <color key="textColor" red="1" green="0.83529412749999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </label>
+                                        </items>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="5"/>
+                                        <connections>
+                                            <segue destination="hj2-0V-lwh" kind="push" identifier="view_token" id="FzJ-Lh-H7X"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="accountLabel" destination="6l9-xS-fTr" id="ngw-BJ-eZ1"/>
+                                        <outlet property="issuerLabel" destination="HIm-cz-YPP" id="4hF-Kh-OMn"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tokenTable" destination="XkV-nR-jg2" id="x0R-lU-UXr"/>
+                    </connections>
+                </controller>
             </objects>
+        </scene>
+        <!--Tocan-->
+        <scene sceneID="5Sk-vo-YMr">
+            <objects>
+                <controller title="Tocan" id="hj2-0V-lwh" customClass="TokenViewController" customModule="tokeny_watch_Extension">
+                    <items>
+                        <group width="130" height="130" alignment="left" radius="0.0" spacing="0.0" id="b0P-TF-2wL">
+                            <items>
+                                <group width="1" alignment="left" layout="vertical" radius="0.0" spacing="0.0" id="AXs-vW-0Vf">
+                                    <items>
+                                        <label width="1" alignment="left" text="github" textAlignment="center" id="UXo-RB-K1J">
+                                            <color key="textColor" red="1" green="0.3411764706" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label width="1" alignment="left" text="888888" textAlignment="center" minimumScaleFactor="0.5" id="QPG-yx-XB8">
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="font" type="system" weight="thin" pointSize="38"/>
+                                            <variation key="device=watch42mm">
+                                                <fontDescription key="font" type="system" weight="thin" pointSize="45"/>
+                                            </variation>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="6" right="6" top="30" bottom="0.0"/>
+                                    <variation key="device=watch42mm">
+                                        <edgeInsets key="margins" left="6" right="6" top="40" bottom="0.0"/>
+                                    </variation>
+                                </group>
+                            </items>
+                            <variation key="device=watch42mm" height="156" width="156"/>
+                        </group>
+                        <label width="1" alignment="left" text="martin@algesten.se" textAlignment="center" minimumScaleFactor="0.59999999999999998" id="2dd-0s-uKt">
+                            <color key="textColor" red="1" green="0.83529412749999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="accountLabel" destination="2dd-0s-uKt" id="Co4-2S-CWv"/>
+                        <outlet property="issuerLabel" destination="UXo-RB-K1J" id="q3f-Is-H6Q"/>
+                        <outlet property="passwordLabel" destination="QPG-yx-XB8" id="1Hx-Ln-6uc"/>
+                        <outlet property="progressGroup" destination="b0P-TF-2wL" id="4f9-3a-RxY"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="318" y="70"/>
         </scene>
     </scenes>
 </document>
