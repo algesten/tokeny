@@ -624,7 +624,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 59KQ35ZTG6;
 						LastSwiftMigration = 830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -638,7 +638,7 @@
 					};
 					5B513FBD1EA1495000D4EF59 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = CX62B2LMS2;
+						DevelopmentTeam = 59KQ35ZTG6;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -1069,8 +1069,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.objf.tokeny;
 				PRODUCT_NAME = tokeny;
-				PROVISIONING_PROFILE = "96c34854-6e52-4cfc-a981-87156364fffd";
-				PROVISIONING_PROFILE_SPECIFIER = tokeny;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "tokeny/tokeny-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1083,7 +1083,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 59KQ35ZTG6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1107,8 +1107,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.objf.tokeny;
 				PRODUCT_NAME = tokeny;
-				PROVISIONING_PROFILE = "c0c68d76-3e35-41d1-bdb2-6e930c5da997";
-				PROVISIONING_PROFILE_SPECIFIER = "tokeny prod";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "tokeny/tokeny-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1180,7 +1180,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = CX62B2LMS2;
+				DEVELOPMENT_TEAM = 59KQ35ZTG6;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1212,7 +1212,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CX62B2LMS2;
+				DEVELOPMENT_TEAM = 59KQ35ZTG6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
