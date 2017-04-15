@@ -23,7 +23,7 @@
                         <color key="textColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Tucan" id="fLH-ls-Unc">
+                        <navigationItem title="Tocan" id="fLH-ls-Unc">
                             <barButtonItem key="rightBarButtonItem" systemItem="add" id="ksJ-IF-J6w"/>
                         </navigationItem>
                     </items>

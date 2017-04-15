@@ -74,7 +74,7 @@ class TokenViewController: WKInterfaceController {
 
 // MARK: - Progress line
 
-private let lineWidth: CGFloat = 4
+private let lineWidth: CGFloat = 3
 
 extension TokenViewController {
   
