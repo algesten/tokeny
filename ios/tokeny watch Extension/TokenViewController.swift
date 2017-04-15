@@ -72,7 +72,6 @@ class TokenViewController: WKInterfaceController {
   
 }
 
-
 // MARK: - Progress line
 
 private let lineWidth: CGFloat = 4
@@ -95,10 +94,10 @@ extension TokenViewController {
     
     context.setLineWidth(lineWidth)
     
-    context.setStrokeColor(UIColor.red.cgColor)
+    context.setStrokeColor(UIColor.tocanGray.cgColor)
     context.strokeEllipse(in: ringRect)
     
-    context.setStrokeColor(UIColor.blue.cgColor)
+    context.setStrokeColor(UIColor.tocanYellow.cgColor)
     context.addArc(center:CGPoint(x: ringRect.midX, y: ringRect.midY), radius: ringRect.width/2, startAngle: CGFloat(-Double.pi / 2), endAngle: CGFloat(2 * Double.pi * progress - Double.pi / 2), clockwise: true)
     
     context.strokePath()

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   ProgressViewIOS,
 } from 'react-native';
+import style from './style'
 
 export default class ProgressBar extends Component {
   constructor() {
@@ -25,12 +26,12 @@ export default class ProgressBar extends Component {
       <ProgressViewIOS
         style={{
           position:'absolute',
-          top:64, left:0, right: 0, height:1,
-          backgroundColor:'transparent'
+          top:64, left:0, right: 0, height:4,
+          backgroundColor:style.theme.gray,
         }}
         progress={1 - this.state.progress}
         progressViewStyle='bar'
-        progressTintColor='#f00'
+        progressTintColor={style.theme.yellow}
         />
     )
   }

@@ -8,6 +8,9 @@ import {
 } from 'react-native'
 import List from './list'
 import Camera from './camera'
+import style from './style'
+
+const nativeImageSource = require('nativeImageSource')
 
 export default connect((state, dispatch) => {
 
@@ -17,19 +20,20 @@ export default connect((state, dispatch) => {
     <NavigatorIOS
       initialRoute={{
         component: List,
-        title: 'Tokeny',
+        title: 'Tocan',
         barTintColor: '#000',
-        titleTextColor: '#2a7af6',
+        tintColor: style.theme.orange,
+        titleTextColor: style.theme.orange,
         translucent: true,
-        leftButtonSystemIcon:  'compose',
         rightButtonSystemIcon: 'add',
         onRightButtonPress: () => {
           dispatch((state) => {
             state.navigator.push({
               component: Camera,
-              title: 'Add code',
+              title: 'Add',
               barTintColor: '#000',
-              titleTextColor: '#2a7af6',
+              tintColor: style.theme.orange,
+              titleTextColor: style.theme.orange,
               translucent: true,
             })
             return {}

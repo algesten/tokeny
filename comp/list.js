@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+  SwipeableListView,
   ListView,
   Text,
   View,

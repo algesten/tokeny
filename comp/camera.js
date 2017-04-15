@@ -41,7 +41,7 @@ export default connect((state, dispatch) => {
                 height: 300,
                 width: 300,
                 borderWidth: 1,
-                borderColor: '#0f0',
+                borderColor: '#ffd500',
                 backgroundColor: 'transparent'
               }}/>
       </View>

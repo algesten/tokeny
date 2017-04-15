@@ -43,10 +43,14 @@ export default class ListRow extends Component {
     return (
       <View style={{}}>
         <View style={{padding:15}}>
-          <Text style={[style.listText, {fontSize:60, fontWeight:'100'}]}>
+          <Text style={[style.listText, {fontSize:60, fontWeight:'200'}]}>
             {authenticator.generate(token.key)}
           </Text>
-          <Text style={[style.listText]}>{token.issuer || ''}/{token.account || ''}</Text>
+          <View style={{flexDirection:'row'}}>
+            <Text style={[style.listText, {color:style.theme.orange}]}>{token.issuer || ''}</Text>
+            <Text> </Text>
+            <Text style={[style.listText, {color:style.theme.yellow}]}>{token.account || ''}</Text>
+          </View>
         </View>
       </View>
     )

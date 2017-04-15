@@ -33,6 +33,8 @@
 		5B9461221EA2030300D35B39 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461201EA2030300D35B39 /* Keychain.swift */; };
 		5B9461241EA2386E00D35B39 /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */; };
 		5B9461271EA2519400D35B39 /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461261EA2519400D35B39 /* TokenViewController.swift */; };
+		5BA618A71EA269D100689CB7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA618A61EA269D100689CB7 /* Colors.swift */; };
+		5BA618C21EA269E500689CB7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA618A61EA269D100689CB7 /* Colors.swift */; };
 		5BB0C6BA1EA0E384009F0E56 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */; };
 		5BB0C6BB1EA0E384009F0E56 /* KeychainStoreBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -298,6 +300,7 @@
 		5B9461201EA2030300D35B39 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
 		5B9461261EA2519400D35B39 /* TokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenViewController.swift; sourceTree = "<group>"; };
+		5BA618A61EA269D100689CB7 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BB0C6B71EA0E384009F0E56 /* tokeny-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tokeny-Bridging-Header.h"; sourceTree = "<group>"; };
 		5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainStoreBridge.m; sourceTree = "<group>"; };
@@ -417,6 +420,7 @@
 				5B2274801EA132CC002C0ED7 /* tokeny.entitlements */,
 				5B9461201EA2030300D35B39 /* Keychain.swift */,
 				5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */,
+				5BA618A61EA269D100689CB7 /* Colors.swift */,
 			);
 			path = tokeny;
 			sourceTree = "<group>";
@@ -981,6 +985,7 @@
 				5BB0C6BA1EA0E384009F0E56 /* KeychainStore.swift in Sources */,
 				5B9461241EA2386E00D35B39 /* WatchSessionDelegate.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				5BA618A71EA269D100689CB7 /* Colors.swift in Sources */,
 				5BB0C6BB1EA0E384009F0E56 /* KeychainStoreBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				5B9461211EA2030300D35B39 /* Keychain.swift in Sources */,
@@ -992,6 +997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B9461271EA2519400D35B39 /* TokenViewController.swift in Sources */,
+				5BA618C21EA269E500689CB7 /* Colors.swift in Sources */,
 				5B513FC61EA1495100D4EF59 /* ExtensionDelegate.swift in Sources */,
 				5B9461221EA2030300D35B39 /* Keychain.swift in Sources */,
 				5B513FC41EA1495100D4EF59 /* InterfaceController.swift in Sources */,

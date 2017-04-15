@@ -6,10 +6,16 @@ const THEME = {
 
   dark: {
     background: "#000000",
-    foreground: "#cccccc",
+    foreground: "#ffffff",
+    gray:       "#414141",
+    yellow:     "#ffd600",
+    orange:     "#ff5900",
   }
 
 }
+
+// ffd500 bright yellow
+// ff5700 orange
 
 export default (() => {
 
@@ -25,7 +31,7 @@ export default (() => {
     },
     listText: {
       color: t.foreground,
-      fontSize: 15,
+      fontSize: 18,
       fontWeight: '400',
     },
   })
