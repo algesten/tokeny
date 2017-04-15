@@ -17,8 +17,24 @@ export default (url) => {
     // otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30
     try {
 
-      const p = parse(url)
-      const ntokens = [].concat(tokens, p)
+      // parse out the token values and also add in the url itself and
+      // an ordinal that is the position in the list
+      const ordinal = tokens.length
+      const newtok = Object.assign({}, parse(url), {url, ordinal})
+
+      // ensure there is an account field, even if blank
+      // this, issuer and url is required by the keychain persistence
+      // see Keychain.swift
+      if (!newtok.account) {
+        newtok.account = ''
+      }
+      // must have an issuer
+      if (!newtok.issuer) {
+        throw new Error("Missing issuer")
+      }
+
+      // the new tokens
+      const ntokens = [].concat(tokens, newtok)
 
       // schedule a save to keychain
       later(() => dispatch(saveAllTokens))

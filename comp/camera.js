@@ -16,14 +16,12 @@ import addToken from '../action/add-token'
 export default connect((state, dispatch) => {
   const {navigator} = state
 
-  // setTimeout(()=>{
-  //   Vibration.vibrate()
-  //   navigator.pop()
-  //   dispatch(addToken('otpauth://totp/martin?secret=123&issuer=github'))
-  // }, 1000)
+  setTimeout(()=>{
+    Vibration.vibrate()
+    navigator.pop()
+    dispatch(addToken('otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example'))
+  }, 1000)
 
-  // otpauth://totp/martin?secret=123&issuer=github
-  // otpauth://hotp/martin?secret=123&issuer=github&counter=0
   return (
     <Camera
       style={{flex:1, alignItems: 'center'}}

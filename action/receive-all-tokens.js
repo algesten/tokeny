@@ -1,43 +1,43 @@
+import {parse, ErrorType} from 'url-otpauth'
 
-// One entry in the store is like this:
-// tokeny000: {
-//    account:   <display name>
-//    issuer:    <issuer>
-//    key:       <key>
-//    type:      totp/hotp
-//    algorithm: SHA1/SHA256/SHA512
-//    digits:    6
-// }
+// tokens come from the storage with the following attributes
+//    {
+//      url: 'otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example'
+//      ordinal: 2
+//    }
+//
+// this must be parsed to get the token format used in the model
 
-// :: str -> int
-const orderNoOf = (() => {
-  const re = /^.*(\\d{3})$/;
-  return (s) => {
-    const [_, noStr] = re.exec(s) || []
-    if (noStr) {
-      return parseInt(noStr, 10)
-    } else {
-      return 999
-    }
-  }
-})()
+const I = (v) => v
 
-export default (dict) => {
+export default (rawtokens) => {
 
   console.log('receiveAllTokens ')
 
   return (state) => {
 
-    // keys sorted in order, we expect keys to be on the form
-    // 'tokeny000', 'tokeny001' etc
-    const keys = Object.keys(dict).sort((k1, k2) => {
-      return orderNoOf(k1) - orderNoOf(k2)
-    })
+    const tokens = rawtokens.map((raw) => {
 
-    // return  sorted tokens
-    return {
-      tokens: keys.map((k) => dict[k])
-    }
+      try {
+        //    {
+        //      type: 'totp',
+        //      account: 'alice@google.com',
+        //      key: 'JBSWY3DPEHPK3PXP',
+        //      issuer: 'Example',
+        //      digits: 6
+        //      url: 'otpauth://totp/Example:al...ret=JBSWY3DPEHPK3PXP&issuer=Example'
+        //      ordinal: 2
+        //    }
+        return Object.assign({}, parse(raw.url), {url:raw.url, ordinal:raw.ordinal || 999})
+      } catch (err) {
+        console.log('failed to parse token', raw.url, err.message)
+        return null
+      }
+
+    }).filter(I)
+
+    return {tokens}
 
   }
+
 }

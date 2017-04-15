@@ -3,10 +3,9 @@ import {createStore, Provider} from 'refnux';
 import model from './lib/model.js'
 import {
   AppRegistry,
-  NativeModules,
 } from 'react-native';
 import App from './comp/app'
-import receiveAllTokens from './action/receive-all-tokens'
+import loadAll from './lib/load-all'
 
 var store = createStore(model)
 
@@ -18,10 +17,8 @@ class Root extends Component {
   }
 }
 
-const {KeychainStore} = NativeModules
-
-KeychainStore.readAll().then((dict) => {
-  store.dispatch(receiveAllTokens(dict))
-})
+// kick it off by loading all entries
+// from the keychain
+loadAll(store.dispatch)
 
 AppRegistry.registerComponent('tokeny', () => Root);

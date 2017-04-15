@@ -27,7 +27,7 @@ export default class ListRow extends Component {
     clearTimeout(this.timer)
     const secs = this.props.token.period || 30
     const next = Math.ceil(Date.now() / (secs * 1000)) * secs * 1000 - Date.now()
-    setTimeout(this.fire, next)
+    this.timer = setTimeout(this.fire, next)
   }
 
   fire() {

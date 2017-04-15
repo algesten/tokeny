@@ -2,43 +2,40 @@ import {
   NativeModules,
 } from 'react-native';
 
+import loadAll from '../lib/load-all'
+
 const {KeychainStore} = NativeModules
 
-// One entry in the store is like this:
-// tokeny000: {
-//    account:   <display name>
-//    issuer:    <issuer>
-//    key:       <key>
-//    type:      totp/hotp
-//    algorithm: SHA1/SHA256/SHA512
-//    digits:    6
-// }
-
-const numberFormat = (n) => {
-  const s = String(n)
-  if (s.length == 1 ) {
-    return '00' + s
-  } else if (s.length == 2) {
-    return '0' + s
-  } else {
-    return s
-  }
-}
+// tokens look like this. the required attributes for storage
+// are url, issuer, account, ordinal.
+//    {
+//      type: 'totp',
+//      account: 'alice@google.com',
+//      key: 'JBSWY3DPEHPK3PXP',
+//      issuer: 'Example',
+//      digits: 6
+//      url: 'otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example'
+//      ordinal: 2
+//    }
 
 export default (state, dispatch) => {
   const {tokens} = state
 
   console.log('saveAllTokens')
 
-  var dict = tokens.reduce((dict, c, idx) => {
-    dict['tokeny' + numberFormat(idx)] = c
-    return dict
-  }, {})
+  // redo all the ordinals
+  const tosave = tokens.map((t, idx) => Object.assign({}, t, {ordinal:idx}))
 
-  KeychainStore.saveAll(dict).then(() => {
+  KeychainStore.saveAll(tosave).then(() => {
     console.log('saveAllTokens ok')
   }).catch((err) => {
+
     console.log('saveAllTokens failed')
+
+    // reload from keychain
+    loadAll(dispatch)
+
+    return {addresult:'Save tokens failed'}
   })
 
   return {}
