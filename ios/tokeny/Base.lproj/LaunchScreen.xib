@@ -14,8 +14,28 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="24j-dB-xN1">
+                    <rect key="frame" x="0.0" y="17" width="480" height="44"/>
+                    <color key="tintColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Tucan" id="fLH-ls-Unc">
+                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="ksJ-IF-J6w"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <nil key="simulatedStatusBarMetrics"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="24j-dB-xN1" secondAttribute="trailing" id="Fwh-N5-pGJ"/>
+                <constraint firstItem="24j-dB-xN1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YIK-6X-Gtv"/>
+                <constraint firstItem="24j-dB-xN1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="nGD-mQ-rpH"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
