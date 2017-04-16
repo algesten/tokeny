@@ -25,11 +25,21 @@ class TokenViewController: WKInterfaceController {
     
     // the context is the token passed from the table
     if let token = context as? Token {
-      
+
       issuerLabel.setText(token.issuer)
       accountLabel.setText(token.name)
       passwordLabel.setText(token.currentPassword)
 
+      var hotpCounter:UInt64 = 0
+      var totpPeriod:Double = 1
+      
+      switch token.generator.factor {
+      case .counter(let counter):
+        hotpCounter = counter
+      case .timer(let period):
+        totpPeriod = period
+      }
+      
       // helper to start a timer
       startTimer = { [weak self] in
         
@@ -39,13 +49,19 @@ class TokenViewController: WKInterfaceController {
         // start a timer that repeatedly will update the progress
         self?.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
           
-          self?.passwordLabel.setText(token.currentPassword)
-          //  const cur = (Math.ceil(Date.now() / (30 * 1000)) * 30 * 1000 - Date.now()) / 30000
-          
           // current time in millis
           let now = NSDate().timeIntervalSince1970
-          let progress = 1.0 - (ceil(now / 30) * 30 - now) / 30
           
+          // attempt to force generate a password since accessing token.currentPassword
+          // seems to stop doing anything on stuff uploaded to the app store
+          do {
+            let txt = try token.generator.password(at:Date())
+            self?.passwordLabel.setText(txt)
+          } catch {
+            print(error)
+          }
+          
+          let progress = 1.0 - (ceil(now / totpPeriod) * totpPeriod - now) / totpPeriod
           self?.drawProgress(progress:progress)
         }
       }
