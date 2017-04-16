@@ -27,8 +27,6 @@
 		5B513FC61EA1495100D4EF59 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B513FC51EA1495100D4EF59 /* ExtensionDelegate.swift */; };
 		5B513FC81EA1495100D4EF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B513FC71EA1495100D4EF59 /* Assets.xcassets */; };
 		5B513FCC1EA1495100D4EF59 /* tokeny watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5B513FB21EA1495000D4EF59 /* tokeny watch.app */; };
-		5B513FF11EA14C4200D4EF59 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B513FEF1EA14C4200D4EF59 /* Base32.framework */; };
-		5B513FF21EA14C4200D4EF59 /* OneTimePassword.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B513FF01EA14C4200D4EF59 /* OneTimePassword.framework */; };
 		5B9461211EA2030300D35B39 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461201EA2030300D35B39 /* Keychain.swift */; };
 		5B9461221EA2030300D35B39 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461201EA2030300D35B39 /* Keychain.swift */; };
 		5B9461241EA2386E00D35B39 /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */; };
@@ -293,9 +291,6 @@
 		5B513FC51EA1495100D4EF59 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		5B513FC71EA1495100D4EF59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B513FC91EA1495100D4EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B513FEF1EA14C4200D4EF59 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/watchOS/Base32.framework; sourceTree = "<group>"; };
-		5B513FF01EA14C4200D4EF59 /* OneTimePassword.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneTimePassword.framework; path = Carthage/Build/watchOS/OneTimePassword.framework; sourceTree = "<group>"; };
-		5B513FF41EA14D3B00D4EF59 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/watchOS/Locksmith.framework; sourceTree = "<group>"; };
 		5B94611F1EA1FC8F00D35B39 /* tokeny watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "tokeny watch Extension.entitlements"; sourceTree = "<group>"; };
 		5B9461201EA2030300D35B39 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		5B9461231EA2386E00D35B39 /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
@@ -304,7 +299,6 @@
 		5BB0C6B71EA0E384009F0E56 /* tokeny-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tokeny-Bridging-Header.h"; sourceTree = "<group>"; };
 		5BB0C6B81EA0E384009F0E56 /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		5BB0C6B91EA0E384009F0E56 /* KeychainStoreBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainStoreBridge.m; sourceTree = "<group>"; };
-		5BB0C6BD1EA0E499009F0E56 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -336,8 +330,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B513FF11EA14C4200D4EF59 /* Base32.framework in Frameworks */,
-				5B513FF21EA14C4200D4EF59 /* OneTimePassword.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,10 +458,6 @@
 		5BB0C6BC1EA0E499009F0E56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5B513FF41EA14D3B00D4EF59 /* Locksmith.framework */,
-				5B513FEF1EA14C4200D4EF59 /* Base32.framework */,
-				5B513FF01EA14C4200D4EF59 /* OneTimePassword.framework */,
-				5BB0C6BD1EA0E499009F0E56 /* Locksmith.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

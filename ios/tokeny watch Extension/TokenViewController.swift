@@ -30,15 +30,7 @@ class TokenViewController: WKInterfaceController {
       accountLabel.setText(token.name)
       passwordLabel.setText(token.currentPassword)
 
-      var hotpCounter:UInt64 = 0
-      var totpPeriod:Double = 1
-      
-      switch token.generator.factor {
-      case .counter(let counter):
-        hotpCounter = counter
-      case .timer(let period):
-        totpPeriod = period
-      }
+      let totpPeriod = 30.0
       
       // helper to start a timer
       startTimer = { [weak self] in
