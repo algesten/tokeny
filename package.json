@@ -12,7 +12,7 @@
     "react-timer-mixin": "^0.13.3",
     "refnux": "^16.0.0-alpha.6",
     "thirty-two": "^1.0.2",
-    "url-otpauth": "^2.0.0"
+    "url-otpauth": "git+https://github.com/algesten/url-otpauth.git"
   },
   "devDependencies": {
     "babel-preset-react-native": "1.9.1"
