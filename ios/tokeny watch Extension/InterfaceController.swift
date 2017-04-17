@@ -15,10 +15,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   }
   
   public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    
-    if session.isReachable {
-      session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
-    }
+
+    // get all the tokens
+    requestAll()
     
   }
 
@@ -59,14 +58,26 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     drawTokens()
     
     // but also request to load new ones from the iphone
+    requestAll()
+    
+  }
+
+  override func didAppear() {
+    requestAll()
+  }
+  
+  override func willActivate() {
+    requestAll()
+  }
+
+  private func requestAll() {
     if let session = session {
       if session.isReachable {
         session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
       }
     }
-    
   }
-
+  
   // the current tokens
   private var tokens:[Token] = []
   
