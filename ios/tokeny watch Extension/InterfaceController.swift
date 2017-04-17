@@ -37,9 +37,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       //    url: <otpauth url>
       //    ordinal: 0
       // ]]
-      let tokens = message["tokens"] as! [[String:Any]]
+      let newTokens = message["tokens"] as! [[String:Any]]
       
-      receiveAllTokens(tokens)
+      receiveAllTokens(newTokens)
       
     }
     
@@ -54,7 +54,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       return Token(url: url)!
     }
     
-    // draw whatever we have.
+    // draw whatever we have in the local keychain.
     drawTokens(keychainTokens)
     
     // but also request to load new ones from the iphone
@@ -70,24 +70,25 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     requestAll()
   }
   
-  var lastRequest:TimeInterval = 0
-
   private func requestAll() {
-    if (Date().timeIntervalSince1970 - lastRequest) > 10 {
-      if let session = session {
-        if session.isReachable {
-          lastRequest = Date().timeIntervalSince1970
-          session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
+    if let session = session {
+      if session.isReachable {
+        // when there isn't something to draw, we might as well let the 
+        // user know what's going on.
+        if tokens.isEmpty {
+          drawMessage("Requesting tokens")
         }
+        session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
       }
     }
   }
   
-  // the currently drawn tokens
+  // the currently drawn tokens, updated by drawTokens
   private var tokens:[Token] = []
   
   // the token table
   @IBOutlet weak var tokenTable: WKInterfaceTable!
+  @IBOutlet weak var messageLabel: WKInterfaceLabel!
   
 
   // when we get new tokens from the phone
@@ -109,7 +110,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // operate without the iphone
     if !Keychain.instance.addAll(tokens:toSave) {
       // failed to save, ouch.
-      print("Keychain save failed")
+      drawMessage("Keychain save failed")
       return
     }
     
@@ -131,7 +132,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     // then proceed to draw them
-    tokens = newTokens
+    // this ought to be the only point we write to self.tokens
+    self.tokens = newTokens
     
     // Configure the table to have enough rows of the type we want
     tokenTable.setNumberOfRows(tokens.count, withRowType: "TokenRowController")
@@ -143,6 +145,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       row.accountLabel.setText(token.name)
       
     }
+
+    if !tokens.isEmpty {
+      tokenTable.setHidden(false)
+      messageLabel.setHidden(true)
+    }
+    
+  }
+  
+  private func drawMessage(_ message:String) {
+    
+    tokenTable.setHidden(true)
+    messageLabel.setHidden(false)
     
   }
   

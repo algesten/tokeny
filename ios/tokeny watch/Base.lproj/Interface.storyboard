@@ -38,8 +38,12 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="Label" textAlignment="center" id="v9N-bn-CqO">
+                            <color key="textColor" red="1" green="0.83579093217849731" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
                     </items>
                     <connections>
+                        <outlet property="messageLabel" destination="v9N-bn-CqO" id="qia-P5-tLq"/>
                         <outlet property="tokenTable" destination="XkV-nR-jg2" id="x0R-lU-UXr"/>
                     </connections>
                 </controller>
