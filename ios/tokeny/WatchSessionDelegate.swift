@@ -34,7 +34,7 @@ class WatchSessionDelegate : NSObject, WCSessionDelegate {
     }
     
   }
-  
+
   func sendAllTokens() {
     // send them back
     let tokens = Keychain.instance.readAll()

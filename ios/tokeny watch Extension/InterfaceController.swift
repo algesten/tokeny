@@ -2,13 +2,27 @@ import WatchKit
 import WatchConnectivity
 import OneTimePassword
 
+/**
+ Run on main.
+ */
+func onmain(_ closure:@escaping ()->()) {
+  if Thread.isMainThread {
+    closure()
+  } else {
+    DispatchQueue.main.async(execute: closure)
+  }
+}
+
+
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
   
-  var session:WCSession? {
+  private func session(doActivate:Bool) -> WCSession? {
     if WCSession.isSupported() {
       let session = WCSession.default()
-      session.delegate = self // before activate
-      session.activate()
+      if doActivate {
+        session.delegate = self // before activate
+        session.activate()
+      }
       return session
     }
     return nil
@@ -30,8 +44,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   public func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
     
     let req = message["request"] as? NSString
-    
+
     if req == "allTokens" {
+      
       // the tokens come as a message with
       // [{
       //    url: <otpauth url>
@@ -39,7 +54,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       // ]]
       let newTokens = message["tokens"] as! [[String:Any]]
       
-      receiveAllTokens(newTokens)
+      print("did receive tokens: \(newTokens.count)")
+      
+      onmain() { [weak self] in
+        self?.receiveAllTokens(newTokens)
+      }
       
     }
     
@@ -48,6 +67,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   override func awake(withContext context: Any?) {
     super.awake(withContext: context)
 
+    print("awake")
+    
+    _ = session(doActivate: true)
+    
     drawMessage("Hello!")
     
     // just grab whatever is in the keychain
@@ -64,28 +87,35 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
   }
 
-  override func didAppear() {
-    requestAll()
-  }
-  
   override func willActivate() {
+    print("will activate")
     requestAll()
   }
   
   private func requestAll() {
-    if let session = session {
+    onmain() { [weak self] in
+        self?._requestAll()
+    }
+  }
+  
+  private func _requestAll() {
+
+    if let session = session(doActivate: false) {
       if session.isReachable {
         // when there isn't something to draw, we might as well let the 
-        // user know what's going on.
+        // user know what's going on. however we want to only access
+        // self.tokens on the main thread
         if tokens.isEmpty {
           drawMessage("Requesting tokens")
         }
+        print("requesting tokens")
         session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
       }
     }
   }
   
   // the currently drawn tokens, updated by drawTokens
+  // only access this on the main thread
   private var tokens:[Token] = []
   
   // the token table
@@ -94,10 +124,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   
 
   // when we get new tokens from the phone
-  private func receiveAllTokens(_ tokens:[[String:Any]]) {
+  // we run this in the main thread to be able to terminate quickly when
+  // we have the same tokens as alreadt saved
+  private func receiveAllTokens(_ newTokens:[[String:Any]]) {
+
+    // these are what we will draw eventually, but we
+    // also use them for comparison with the stuff we already have
+    let toDraw:[Token] = newTokens.map() {
+      let url = URL(string: $0[kKeyURL] as! String)!
+      return Token(url: url)!
+    }
+    
+    // already got them?
+    if self.tokens == toDraw {
+      return
+    }
     
     // map them to something we can save in the local keychain
-    let toSave:[[String:Any]] = tokens.map() {
+    let toSave:[[String:Any]] = newTokens.map() {
       let url = URL(string: $0[kKeyURL] as! String)!
       let token = Token(url: url)!
       return [
@@ -108,26 +152,32 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       ]
     }
     
+    print("to save: \(toSave.count)")
+    
     // save all the things to the watch keychain. this way we can
     // operate without the iphone
     if !Keychain.instance.addAll(tokens:toSave) {
       // failed to save, ouch.
       drawMessage("Keychain save failed")
+      print("keychain save failed")
       return
     }
     
-    // and update the local state
-    let newTokens:[Token] = tokens.map() {
-      let url = URL(string: $0[kKeyURL] as! String)!
-      return Token(url: url)!
-    }
-    
-    drawTokens(newTokens)
+    // well draw them then
+    drawTokens(toDraw)
     
   }
-  
+ 
   private func drawTokens(_ newTokens:[Token]) {
+    onmain() { [weak self] in
+        self?._drawTokens(newTokens)
+    }
+  }
+  
+  private func _drawTokens(_ newTokens:[Token]) {
 
+    print("draw tokens \(newTokens.count), is same as before: \(newTokens == tokens)")
+    
     // first just check we dont have exactly this drawn already
     if newTokens == tokens {
       return
@@ -156,6 +206,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   }
   
   private func drawMessage(_ message:String) {
+    onmain() { [weak self] in
+      self?._drawMessage(message)
+    }
+  }
+  
+  private func _drawMessage(_ message:String) {
     tokenTable.setHidden(true)
     messageLabel.setHidden(false)
     messageLabel.setText(message)
