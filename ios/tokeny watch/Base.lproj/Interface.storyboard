@@ -19,10 +19,10 @@
                                 <tableRow identifier="TokenRowController" id="s9f-5T-xgk" customClass="TokenRowController" customModule="tokeny_watch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="2SX-oO-KIp">
                                         <items>
-                                            <label alignment="left" text="-" minimumScaleFactor="0.59999999999999998" id="HIm-cz-YPP">
+                                            <label width="1" height="20" alignment="left" minimumScaleFactor="0.59999999999999998" id="HIm-cz-YPP">
                                                 <color key="textColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
-                                            <label alignment="left" text="-" minimumScaleFactor="0.59999999999999998" id="6l9-xS-fTr">
+                                            <label width="1" height="20" alignment="left" minimumScaleFactor="0.59999999999999998" id="6l9-xS-fTr">
                                                 <color key="textColor" red="1" green="0.83579093217849731" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                         </items>
@@ -38,7 +38,7 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="Label" textAlignment="center" id="v9N-bn-CqO">
+                        <label width="1" alignment="center" verticalAlignment="center" hidden="YES" text="." textAlignment="center" id="v9N-bn-CqO">
                             <color key="textColor" red="1" green="0.83579093217849731" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
                     </items>
@@ -58,7 +58,7 @@
                             <items>
                                 <group width="1" alignment="left" layout="vertical" radius="0.0" spacing="0.0" id="AXs-vW-0Vf">
                                     <items>
-                                        <label width="1" alignment="left" text="github" textAlignment="center" id="UXo-RB-K1J">
+                                        <label width="1" height="20" alignment="left" text="github" textAlignment="center" id="UXo-RB-K1J">
                                             <color key="textColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <label width="1" alignment="left" text="888888" textAlignment="center" minimumScaleFactor="0.5" id="QPG-yx-XB8">

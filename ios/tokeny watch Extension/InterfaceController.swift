@@ -48,6 +48,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   override func awake(withContext context: Any?) {
     super.awake(withContext: context)
 
+    drawMessage("Hello!")
+    
     // just grab whatever is in the keychain
     let keychainTokens:[Token] = Keychain.instance.readAll().map() {
       let url = URL(string: $0[kKeyURL] as! String)!
@@ -154,10 +156,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   }
   
   private func drawMessage(_ message:String) {
-    
     tokenTable.setHidden(true)
     messageLabel.setHidden(false)
-    
+    messageLabel.setText(message)
   }
   
   // provide the token to the view
