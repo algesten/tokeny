@@ -15,6 +15,13 @@ import ProgressBar from './progress-bar'
 import deleteToken from '../action/delete-token'
 
 const later = (fn) => setTimeout(fn,0)
+const muchlater = (() => {
+  var t
+  return (fn) => {
+    clearTimeout(t)
+    t = setTimeout(fn,500)
+  }
+})()
 
 var dataSource = SwipeableListView.getNewDataSource()
 
@@ -38,9 +45,13 @@ export default connect((state, dispatch, props) => {
 
   // do we have a message from the latest addition?
   if (addresult) {
-    AlertIOS.alert('Add failed', addresult)
     // clear the message
-    later(() => dispatch(() => {return {addresult:''}}))
+    muchlater(() => {
+      dispatch(() => {
+        AlertIOS.alert('Add failed', addresult)
+        return {addresult:''}
+      })
+    })
   }
 
   return (

@@ -42,12 +42,12 @@ export default (url) => {
       }
 
       // for now we only accept totp
-      if (!newtok.type  == 'totp') {
+      if (newtok.type  != 'totp') {
         return {addresult:'Can only handle time based tokens (TOTP), for now'}
       }
 
       // for now we use a hardcoded 30 sec period
-      if (newtok.period && !newtok.period == 30) {
+      if (newtok.period && newtok.period != 30) {
         return {addresult:'Can only handle time based tokens with a period of 30, for now'}
       }
 
