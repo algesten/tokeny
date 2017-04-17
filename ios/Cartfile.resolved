@@ -1,2 +1,2 @@
+github "algesten/OneTimePassword" "61fc234c0f61c141f2ca80a1f13bd1368ab9b295"
 github "mattrubin/Base32" "1.1.2+carthage"
-github "mattrubin/OneTimePassword" "3.0"
