@@ -19,10 +19,10 @@
                                 <tableRow identifier="TokenRowController" id="s9f-5T-xgk" customClass="TokenRowController" customModule="tokeny_watch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="2SX-oO-KIp">
                                         <items>
-                                            <label alignment="left" text="github" minimumScaleFactor="0.59999999999999998" id="HIm-cz-YPP">
+                                            <label alignment="left" text="-" minimumScaleFactor="0.59999999999999998" id="HIm-cz-YPP">
                                                 <color key="textColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
-                                            <label alignment="left" text="martin@algesten.se" minimumScaleFactor="0.59999999999999998" id="6l9-xS-fTr">
+                                            <label alignment="left" text="-" minimumScaleFactor="0.59999999999999998" id="6l9-xS-fTr">
                                                 <color key="textColor" red="1" green="0.83579093217849731" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                         </items>

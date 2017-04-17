@@ -49,13 +49,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     super.awake(withContext: context)
 
     // just grab whatever is in the keychain
-    self.tokens = Keychain.instance.readAll().map() {
+    let keychainTokens:[Token] = Keychain.instance.readAll().map() {
       let url = URL(string: $0[kKeyURL] as! String)!
       return Token(url: url)!
     }
     
     // draw whatever we have.
-    drawTokens()
+    drawTokens(keychainTokens)
     
     // but also request to load new ones from the iphone
     requestAll()
@@ -69,16 +69,21 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   override func willActivate() {
     requestAll()
   }
+  
+  var lastRequest:TimeInterval = 0
 
   private func requestAll() {
-    if let session = session {
-      if session.isReachable {
-        session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
+    if (Date().timeIntervalSince1970 - lastRequest) > 10 {
+      if let session = session {
+        if session.isReachable {
+          lastRequest = Date().timeIntervalSince1970
+          session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
+        }
       }
     }
   }
   
-  // the current tokens
+  // the currently drawn tokens
   private var tokens:[Token] = []
   
   // the token table
@@ -109,16 +114,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     // and update the local state
-    self.tokens = tokens.map() {
+    let newTokens:[Token] = tokens.map() {
       let url = URL(string: $0[kKeyURL] as! String)!
       return Token(url: url)!
     }
     
-    drawTokens()
+    drawTokens(newTokens)
     
   }
   
-  private func drawTokens() {
+  private func drawTokens(_ newTokens:[Token]) {
+
+    // first just check we dont have exactly this drawn already
+    if newTokens == tokens {
+      return
+    }
+    
+    // then proceed to draw them
+    tokens = newTokens
     
     // Configure the table to have enough rows of the type we want
     tokenTable.setNumberOfRows(tokens.count, withRowType: "TokenRowController")
