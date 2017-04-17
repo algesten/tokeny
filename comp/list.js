@@ -24,11 +24,8 @@ const updateDataSource = (state) => {
   dataSource = dataSource.cloneWithRowsAndSections(state, ['tokens'])
 }
 
-// hack to be able to force a redraw
-var listref
-
 export default connect((state, dispatch, props) => {
-  const {tokens, addresult} = state
+  const {tokens, addresult, dummy} = state
 
   // always update on top-down redraw
   updateDataSource(state)
@@ -41,7 +38,7 @@ export default connect((state, dispatch, props) => {
 
   // do we have a message from the latest addition?
   if (addresult) {
-    AlertIOS.alert('Add failed',addresult)
+    AlertIOS.alert('Add failed', addresult)
     // clear the message
     later(() => dispatch(() => {return {addresult:''}}))
   }
@@ -57,7 +54,6 @@ export default connect((state, dispatch, props) => {
             <ListRow token={token}/>
           )
         }}
-       ref={(_listref)=>{listref=_listref}}
         renderQuickActions={(token) => {
           return (
             <View style={{flex:1,
@@ -66,23 +62,12 @@ export default connect((state, dispatch, props) => {
               <TouchableOpacity
                 onPress={() => {
                   dataSource.setOpenRowID(null) // close the open row
-                  const redraw = () => {
-                    // hack to force reload the listview
-                    later(() => dispatch((state) => {
-                      updateDataSource(state)
-                      listref.setState({dataSource})
-                      return {}
-                    }))
-                  }
                   AlertIOS.alert(
                     'Are you sure?!',
                     'This will NOT turn off two-factor authentication with you provider.',
                     [
-                      {text: 'Cancel', onPress: redraw, style: 'cancel'},
-                      {text: 'Delete', onPress: () => {
-                        dispatch(deleteToken(token))
-                        redraw()
-                      }},
+                      {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+                      {text: 'Delete', onPress: () => dispatch(deleteToken(token))},
                     ]
                   )
                 }}
