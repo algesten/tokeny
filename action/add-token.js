@@ -6,7 +6,7 @@ const later = (fn) => setTimeout(fn, 0)
 
 export default (url) => {
 
-  console.log('addToken ', url)
+  console.log('addToken')
 
   return (state, dispatch) => {
     const {tokens} = state
@@ -15,6 +15,14 @@ export default (url) => {
     // otpauth://hotp/martin?secret=123&issuer=github&counter=0
     // otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
     // otpauth://totp/ACME%20Co:john.doe@email.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30
+    //
+    // {
+    //   type: 'totp',
+    //   account: 'alice@google.com',
+    //   key: 'JBSWY3DPEHPK3PXP',
+    //   issuer: 'Example',
+    //   digits: 6
+    // }
     try {
 
       // parse out the token values and also add in the url itself and
@@ -30,7 +38,17 @@ export default (url) => {
       }
       // must have an issuer
       if (!newtok.issuer) {
-        throw new Error("Missing issuer")
+        return {addresult:'Missing issuer'}
+      }
+
+      // for now we only accept totp
+      if (!newtok.type  == 'totp') {
+        return {addresult:'Can only handle time based tokens (TOTP), for now'}
+      }
+
+      // for now we use a hardcoded 30 sec period
+      if (newtok.period && !newtok.period == 30) {
+        return {addresult:'Can only handle time based tokens with a period of 30, for now'}
       }
 
       // the new tokens

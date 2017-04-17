@@ -28,7 +28,7 @@ const updateDataSource = (state) => {
 var listref
 
 export default connect((state, dispatch, props) => {
-  const {tokens} = state
+  const {tokens, addresult} = state
 
   // always update on top-down redraw
   updateDataSource(state)
@@ -36,9 +36,14 @@ export default connect((state, dispatch, props) => {
   // we need to navigator to be available as a state prop
   // since we use it from the app.js.
   if (state.navigator != props.navigator) {
-    later(() => {
-      dispatch(() => {return {navigator:props.navigator}})
-    })
+    later(() => dispatch(() => {return {navigator:props.navigator}}))
+  }
+
+  // do we have a message from the latest addition?
+  if (addresult) {
+    AlertIOS.alert('Add failed',addresult)
+    // clear the message
+    later(() => dispatch(() => {return {addresult:''}}))
   }
 
   return (
