@@ -4,7 +4,7 @@ private let kOTPService = "se.objf.tokeny.token"
 
 // these 4 things are needed to save a token to the keychain
 let kKeyURL = "url"
-let kKeyIssuer = "issuer"
+let kKeyIssuer = "issuer"    // allowed to be empty string
 let kKeyAccount = "account"
 let kKeyOrdinal = "ordinal"
 

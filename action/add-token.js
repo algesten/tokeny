@@ -30,15 +30,15 @@ export default (url) => {
       const ordinal = tokens.length
       const newtok = Object.assign({}, parse(url), {url, ordinal})
 
-      // ensure there is an account field, even if blank
-      // this, issuer and url is required by the keychain persistence
+      // ensure there is an issuer field, even if blank
+      // this, account and url is required by the keychain persistence
       // see Keychain.swift
-      if (!newtok.account) {
-        newtok.account = ''
-      }
-      // must have an issuer
       if (!newtok.issuer) {
-        return {addresult:'Missing issuer'}
+        newtok.issuer = ''
+      }
+      // must have an account
+      if (!newtok.account) {
+        return {addresult:'Missing account'}
       }
 
       // for now we only accept totp
