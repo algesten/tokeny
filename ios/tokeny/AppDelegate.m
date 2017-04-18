@@ -16,7 +16,7 @@
     session.delegate = WatchSessionDelegate.instance; // before activate
     [session activateSession];
   }
-  
+
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
@@ -35,7 +35,7 @@
   [self.window makeKeyAndVisible];
   return YES;
   
-//  errSecParam
+  // errSecParam
 }
 
 @end

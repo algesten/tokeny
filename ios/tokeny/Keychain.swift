@@ -8,10 +8,13 @@ let kKeyIssuer = "issuer"    // allowed to be empty string
 let kKeyAccount = "account"
 let kKeyOrdinal = "ordinal"
 
-class Keychain {
+class Keychain : NSObject {
 
   static let instance = Keychain()
 
+  // whether to save as iCloud synchronizable. the watch doesnt do this.
+  var synchronizable = kCFBooleanTrue
+  
 //    {
 //      type: 'totp',
 //      account: 'alice@google.com',
@@ -33,7 +36,7 @@ class Keychain {
       // these three are what makes the keychain item unique
       kSecAttrService as String       : kOTPService as NSString,
       kSecAttrAccount as String       : account as NSString,
-      kSecAttrSynchronizable as String: kCFBooleanTrue,
+      kSecAttrSynchronizable as String: synchronizable,
 
       kSecValueData as String         : urlData,
       kSecAttrLabel as String         : ordinal as NSString,
@@ -53,12 +56,13 @@ class Keychain {
     
   }
   
-  
+
   func deleteAll() -> Bool {
 
     let attrs:[String:Any] = [
       kSecClass as String             : kSecClassGenericPassword,
-      kSecAttrSynchronizable as String: kCFBooleanTrue,
+      kSecAttrService as String       : kOTPService as NSString,
+      kSecAttrSynchronizable as String: synchronizable,
     ]
     
     let resultCode = SecItemDelete(attrs as CFDictionary)
@@ -85,6 +89,20 @@ class Keychain {
       return false
     }
     
+    // the dummy is used to check whether the iphone homescreen is locked/unlocked
+    // when it is locked, the reading of data from keychain returns 0. by having
+    // a dummy to query that is always saved, regardless of the other saved tokens,
+    // we can implicitly know whether the iphone is locked.
+    if !addOne(dict:[
+        "account": "dummy",
+        "issuer": "dummy",
+        "url": "dummy",
+        "ordinal": -1,
+      ]) {
+      print("saving dummy failed")
+      return false
+    }
+    
     for tok in tokens {
       if !addOne(dict: tok) {
         return false
@@ -96,12 +114,13 @@ class Keychain {
   }
   
   
-  func readAll() -> [[String:Any]] {
+  func _readAll() -> [[String:Any]] {
     
     let attrs:[String:Any] = [
       kSecClass as String             : kSecClassGenericPassword,
       kSecMatchLimit as String        : kSecMatchLimitAll,
-      kSecAttrSynchronizable as String: kCFBooleanTrue,
+      kSecAttrService as String       : kOTPService as NSString,
+      kSecAttrSynchronizable as String: synchronizable,
       kSecReturnAttributes as String  : kCFBooleanTrue,
       kSecReturnData as String        : kCFBooleanTrue,
     ]
@@ -137,6 +156,16 @@ class Keychain {
     }
   }
   
+  func readAll() -> [[String:Any]] {
+    return _readAll().filter() {
+      return ($0[kKeyURL] as! String) != "dummy"
+    }
+  }
 
-  
+  // the dummy is always in the _readAll, so if absolutely _nothing_ is
+  // returned, we implicitly know the iphone is locked
+  func isLocked() -> Bool {
+      return _readAll().count == 0
+  }
+
 }

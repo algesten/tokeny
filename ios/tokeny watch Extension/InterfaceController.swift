@@ -37,7 +37,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
   func sessionReachabilityDidChange(_ session: WCSession) {
 
-    print("reachable", session.isReachable)
+    xprint("reachable \(session.isReachable)")
     
   }
   
@@ -47,17 +47,26 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     if req == "allTokens" {
       
-      // the tokens come as a message with
-      // [{
-      //    url: <otpauth url>
-      //    ordinal: 0
-      // ]]
-      let newTokens = message["tokens"] as! [[String:Any]]
-      
-      print("did receive tokens: \(newTokens.count)")
-      
-      onmain() { [weak self] in
-        self?.receiveAllTokens(newTokens)
+      if (message["notokens"] as? Bool) == true {
+
+        // notokens means iphone is locked and there were no tokens cached
+        // for the response. we can't do anything with that.
+        xprint("did receive notokens :(")
+        
+      } else {
+        // the tokens come as a message with
+        // [{
+        //    url: <otpauth url>
+        //    ordinal: 0
+        // ]]
+        let newTokens = message["tokens"] as! [[String:Any]]
+        
+        xprint("did receive tokens: \(newTokens.count)")
+        
+        onmain() { [weak self] in
+          self?.receiveAllTokens(newTokens)
+        }
+        
       }
       
     }
@@ -67,7 +76,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   override func awake(withContext context: Any?) {
     super.awake(withContext: context)
 
-    print("awake")
+    xprint("awake")
     
     _ = session(doActivate: true)
     
@@ -79,6 +88,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       return Token(url: url)!
     }
     
+    xprint("keychain tokens \(keychainTokens.count)")
+    
     // draw whatever we have in the local keychain.
     drawTokens(keychainTokens)
     
@@ -87,9 +98,21 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
   }
 
+  override func didAppear() {
+    xprint("did appear")
+  }
+  
+  override func willDisappear() {
+    xprint("will disappear")
+  }
+  
   override func willActivate() {
-    print("will activate")
+    xprint("will activate")
     requestAll()
+  }
+  
+  override func didDeactivate() {
+    xprint("did deactivate")
   }
   
   private func requestAll() {
@@ -108,7 +131,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if tokens.isEmpty {
           drawMessage("Requesting tokens")
         }
-        print("requesting tokens")
+        xprint("requesting tokens")
         session.sendMessage(["request":"loadAllTokens"], replyHandler: nil, errorHandler: nil)
       }
     }
@@ -122,7 +145,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   @IBOutlet weak var tokenTable: WKInterfaceTable!
   @IBOutlet weak var messageLabel: WKInterfaceLabel!
   
-
+  //@IBOutlet weak var debugLabel: WKInterfaceLabel!
+    
   // when we get new tokens from the phone
   // we run this in the main thread to be able to terminate quickly when
   // we have the same tokens as alreadt saved
@@ -152,14 +176,14 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
       ]
     }
     
-    print("to save: \(toSave.count)")
+    xprint("to save: \(toSave.count)")
     
     // save all the things to the watch keychain. this way we can
     // operate without the iphone
     if !Keychain.instance.addAll(tokens:toSave) {
       // failed to save, ouch.
       drawMessage("Keychain save failed")
-      print("keychain save failed")
+      xprint("keychain save failed")
       return
     }
     
@@ -176,7 +200,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
   
   private func _drawTokens(_ newTokens:[Token]) {
 
-    print("draw tokens \(newTokens.count), is same as before: \(newTokens == tokens)")
+    xprint("draw tokens \(newTokens.count), is same as before: \(newTokens == tokens)")
     
     // first just check we dont have exactly this drawn already
     if newTokens == tokens {
@@ -222,6 +246,19 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     return tokens[rowIndex]
   }
   
+//  private var rows:[String] = []
+  
+  private func xprint(_ log:String) {
+    print(log)
+//    rows.append(log)
+//    while rows.count > 10 {
+//      rows.remove(at: 0)
+//    }
+//    let output = rows.joined(separator: "\n")
+//    onmain { [weak self] in
+//      self?.debugLabel.setText(output)
+//    }
+  }
   
 }
 
