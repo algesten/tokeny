@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {
+  TouchableOpacity,
   SwipeableListView,
   ListView,
   AlertIOS,
   Text,
   View,
-  TouchableOpacity,
-  TouchableHighlight,
 } from 'react-native';
 import {connect} from 'refnux'
 import style from './style'
@@ -68,19 +67,20 @@ export default connect((state, dispatch, props) => {
         dataSource={dataSource}
         renderRow={(token) => {
           return (
-              <TouchableOpacity
-                onPress={() => navigator.push({
-                  component: Edit,
-                  title: 'Edit',
-                  passProps: {token},
-                  barTintColor: '#000',
-                  tintColor: style.theme.orange,
-                  titleTextColor: style.theme.orange,
-                  translucent: true,
-                  })
-                }>
-                <ListRow token={token}/>
-              </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => navigator.push({
+                component: Edit,
+                title: 'Edit',
+                passProps: {token},
+                barTintColor: '#000',
+                tintColor: style.theme.orange,
+                titleTextColor: style.theme.orange,
+                translucent: true,
+                })
+              }>
+              <ListRow token={token}/>
+            </TouchableOpacity>
           )
         }}
         // renderQuickActions={(token) => {
