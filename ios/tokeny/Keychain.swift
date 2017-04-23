@@ -13,7 +13,7 @@ class Keychain : NSObject {
   static let instance = Keychain()
 
   // whether to save as iCloud synchronizable. the watch doesnt do this.
-  var synchronizable = kCFBooleanTrue
+  var synchronizable:Any = kCFBooleanTrue
   
 //    {
 //      type: 'totp',
@@ -24,11 +24,11 @@ class Keychain : NSObject {
 //      url: 'otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example'
 //      ordinal: 2
 //    }
-  func addOne(dict:[String:Any]) -> Bool {
+  private func addOne(dict:[String:Any]) -> Bool {
 
     let urlData = (dict[kKeyURL] as! String).data(using: String.Encoding.utf8)!
-    let account = (dict[kKeyIssuer] as! String) + "/" + (dict[kKeyAccount] as! String)
     let ordinal = String(dict[kKeyOrdinal] as! NSInteger)
+    let account = ordinal + ":" + (dict[kKeyIssuer] as! String) + "/" + (dict[kKeyAccount] as! String)
     
     let attrs:[String:Any] = [
       kSecClass as String             : kSecClassGenericPassword,
@@ -57,24 +57,24 @@ class Keychain : NSObject {
   }
   
 
-  func deleteAll() -> Bool {
+  private func deleteAll() -> Bool {
 
-    let attrs:[String:Any] = [
-      kSecClass as String             : kSecClassGenericPassword,
-      kSecAttrService as String       : kOTPService as NSString,
-      kSecAttrSynchronizable as String: synchronizable,
-    ]
-    
-    let resultCode = SecItemDelete(attrs as CFDictionary)
-    
-    // no items is ok
-    if resultCode == errSecItemNotFound {
-      return true
-    }
+    for item in readKeychain() {
 
-    guard resultCode == errSecSuccess else {
-      print("deleteAll failed " + String(resultCode))
-      return false
+      let ref = item[kSecValuePersistentRef as String] as! Data
+      
+      let queryDict: [String : AnyObject] = [
+        kSecClass as String:               kSecClassGenericPassword,
+        kSecValuePersistentRef as String:  ref as NSData,
+        ]
+      
+      let resultCode = SecItemDelete(queryDict as CFDictionary)
+      
+      guard resultCode == errSecSuccess else {
+          print("Failed to delete")
+          return false
+      }
+
     }
     
     return true
@@ -103,6 +103,8 @@ class Keychain : NSObject {
       return false
     }
     
+    print("tokens to save: \(tokens.count)")
+    
     for tok in tokens {
       if !addOne(dict: tok) {
         return false
@@ -112,22 +114,27 @@ class Keychain : NSObject {
     return true
     
   }
+
+  
+  private var allAttrs:[String:Any] {
+    get {
+      return [
+        kSecClass as String               : kSecClassGenericPassword,
+        kSecMatchLimit as String          : kSecMatchLimitAll,
+        kSecAttrSynchronizable as String  : synchronizable,
+        kSecReturnAttributes as String    : kCFBooleanTrue,
+        kSecReturnData as String          : kCFBooleanTrue,
+        kSecReturnPersistentRef as String : kCFBooleanTrue,
+      ]
+    }
+  }
   
   
-  func _readAll() -> [[String:Any]] {
-    
-    let attrs:[String:Any] = [
-      kSecClass as String             : kSecClassGenericPassword,
-      kSecMatchLimit as String        : kSecMatchLimitAll,
-      kSecAttrService as String       : kOTPService as NSString,
-      kSecAttrSynchronizable as String: synchronizable,
-      kSecReturnAttributes as String  : kCFBooleanTrue,
-      kSecReturnData as String        : kCFBooleanTrue,
-    ]
-    
+  private func readKeychain() -> [NSDictionary] {
+
     var result: AnyObject?
     let resultCode = withUnsafeMutablePointer(to: &result) {
-      SecItemCopyMatching(attrs as CFDictionary, $0)
+      SecItemCopyMatching(allAttrs as CFDictionary, $0)
     }
     
     // no items is ok, -25300
@@ -136,24 +143,32 @@ class Keychain : NSObject {
     }
     
     guard resultCode == errSecSuccess else {
-      print("readAll failed " + String(resultCode))
+      print("readKeychain failed " + String(resultCode))
       return []
     }
     
     guard let keychainItems = result as? [NSDictionary] else {
-      print("readAll failed type")
+      print("readKeychain failed type")
       return []
     }
     
-    return keychainItems.map() {
+    return keychainItems
+    
+  }
+  
+  
+  func _readAll() -> [[String:Any]] {
+    
+    return readKeychain().map() {
       var token:[String:Any] = [:]
       let urlData = $0[kSecValueData as String] as! Data
       token[kKeyURL] = String(data: urlData, encoding: String.Encoding.utf8)
       let ordinalString = $0[kSecAttrLabel as String] as! String
-      let ordinal = NSInteger(ordinalString)
+      let ordinal = NSInteger(ordinalString)!
       token[kKeyOrdinal] = ordinal
       return token
     }
+    
   }
   
   func readAll() -> [[String:Any]] {
