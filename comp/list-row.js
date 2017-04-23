@@ -40,17 +40,23 @@ export default class ListRow extends Component {
 
   render() {
     const token = this.props.token
+    const code = String(authenticator.generate(token.key))
+    const splitAt = Math.floor(code.length / 2)
+    const first = code.slice(0, splitAt)
+    const second = code.slice((splitAt), code.length)
     return (
       <View style={{padding:15, backgroundColor:'#000'}}>
-          <Text style={[style.listText, {fontSize:60, fontWeight:'200'}]}>
-            {authenticator.generate(token.key)}
-          </Text>
-          <View style={{flexDirection:'row'}}>
-            <Text style={[style.listText, {color:style.theme.orange}]}>{token.issuer || ''}</Text>
-            <Text> </Text>
-            <Text style={[style.listText, {color:style.theme.yellow}]}>{token.account || ''}</Text>
-          </View>
+        <View style={{flexDirection:'row'}}>
+          <Text style={[style.codeText]}>{first}</Text>
+          <Text style={[style.codeText]}> </Text>
+          <Text style={[style.codeText]}>{second}</Text>
         </View>
+        <View style={{flexDirection:'row'}}>
+          <Text style={[style.listText, {color:style.theme.orange}]}>{token.issuer || ''}</Text>
+          <Text> </Text>
+          <Text style={[style.listText, {color:style.theme.yellow}]}>{token.account || ''}</Text>
+        </View>
+      </View>
     )
   }
 

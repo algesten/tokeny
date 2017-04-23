@@ -12,7 +12,7 @@ import {connect} from 'refnux'
 import style from './style'
 import ListRow from './list-row'
 import ProgressBar from './progress-bar'
-import deleteToken from '../action/delete-token'
+import Edit from './edit'
 
 const later = (fn) => setTimeout(fn,0)
 const muchlater = (() => {
@@ -23,7 +23,10 @@ const muchlater = (() => {
   }
 })()
 
-var dataSource = SwipeableListView.getNewDataSource()
+var dataSource = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1 !== r2,
+  sectionHeaderHasChanged: () => false,
+})
 
 const updateDataSource = (state) => {
   // we pass state in as datasource, and specify the tokens is
@@ -43,6 +46,9 @@ export default connect((state, dispatch, props) => {
     later(() => dispatch(() => {return {navigator:props.navigator}}))
   }
 
+  // local ref
+  var navigator = props.navigator || state.navigator
+
   // do we have a message from the latest addition?
   if (addresult) {
     // clear the message
@@ -56,44 +62,48 @@ export default connect((state, dispatch, props) => {
 
   return (
     <View style={{flex:1}}>
-      <SwipeableListView
+      <ListView
         maxSwipeDistance={100}
-        style={[{flex:1, backgroundColor:'#000'}]}
+        style={[{marginTop: 2, flex:1, backgroundColor:'#000'}]}
         dataSource={dataSource}
         renderRow={(token) => {
           return (
-            <ListRow token={token}/>
-          )
-        }}
-        renderQuickActions={(token) => {
-          return (
-            <View style={{flex:1,
-                          flexDirection:'row',
-                  justifyContent:'flex-end'}}>
               <TouchableOpacity
-                onPress={() => {
-                  dataSource.setOpenRowID(null) // close the open row
-                  AlertIOS.alert(
-                    'Are you sure?!',
-                    'This will NOT turn off two-factor authentication with you provider.',
-                    [
-                      {text: 'Cancel', onPress: () => {}, style: 'cancel'},
-                      {text: 'Delete', onPress: () => dispatch(deleteToken(token))},
-                    ]
-                  )
-                }}
-                style={{
-                  width:100, alignItems:'center',
-                  justifyContent:'center', backgroundColor:'#dd3500'
-                }}>
-                <Text style={[style.text]}>Delete</Text>
+                onPress={() => navigator.push({
+                  component: Edit,
+                  title: 'Edit',
+                  passProps: {token},
+                  barTintColor: '#000',
+                  tintColor: style.theme.orange,
+                  titleTextColor: style.theme.orange,
+                  translucent: true,
+                  })
+                }>
+                <ListRow token={token}/>
               </TouchableOpacity>
-            </View>
           )
         }}
+        // renderQuickActions={(token) => {
+        //   return (
+        //     <View style={{flex:1,
+        //                   flexDirection:'row',
+        //           justifyContent:'flex-end'}}>
+        //       <TouchableOpacity
+        //         onPress={() => {
+        //           dataSource.setOpenRowID(null) // close the open row
+        //         }}
+        //         style={{
+        //           width:100, alignItems:'center',
+        //           justifyContent:'center', backgroundColor:'#dd3500'
+        //         }}>
+        //         <Text style={[style.text]}>Delete</Text>
+        //       </TouchableOpacity>
+        //     </View>
+        //   )
+        // }}
         renderSeparator={
           (sectionID, rowID) => (
-            <View key={"sep" + rowID} style={[{height:1, backgroundColor:'#222'}]}/>
+            <View key={"sep" + rowID} style={[{height:2, backgroundColor:'#333'}]}/>
           )
         }
         enableEmptySections={true}

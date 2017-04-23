@@ -35,7 +35,7 @@ export default (state, dispatch) => {
     // reload from keychain
     loadAll(dispatch)
 
-    return {addresult:'Save tokens failed'}
+    dispatch(() => { return {addresult:'Save tokens failed'} })
   })
 
   return {}

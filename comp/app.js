@@ -4,16 +4,16 @@ import {
   View,
   Text,
   StatusBar,
-  NavigatorIOS,
 } from 'react-native'
 import List from './list'
 import Camera from './camera'
 import style from './style'
 
-const nativeImageSource = require('nativeImageSource')
+// using a hacked version of NavigatorIOS that always
+// propagates redraws to its children.
+import NavigatorIOSXXX from '../NavigatorIOS'
 
-// ref to the NavigatorIOS component
-var navRef = {}
+const nativeImageSource = require('nativeImageSource')
 
 const later = (fn) => setTimeout(fn, 0)
 
@@ -22,22 +22,8 @@ export default connect((state, dispatch) => {
 
   StatusBar.setBarStyle('light-content', true);
 
-  if (navRef.setState) {
-    // this is a hack to force NavigatorIOS to redraw the children.
-    // the docs says for "performance optimmization reasons, they
-    // try to avoid it. but this messes with refnux top-down redraw
-    //
-    // here is the optimization we're trying to trick by setting this to
-    // and thus redrawing everything
-    // https://github.com/facebook/react-native/blob/0.42-stable/Libraries/Components/Navigation/NavigatorIOS.ios.js#L877
-    if (navRef.state.updatingAllIndicesAtOrBeyond === null) {
-      later(() => navRef.setState({updatingAllIndicesAtOrBeyond:0}))
-    }
-  }
-
   return (
-    <NavigatorIOS
-      ref={(_navRef) => navRef = _navRef}
+    <NavigatorIOSXXX
       initialRoute={{
         component: List,
         title: 'Tocan',
@@ -61,7 +47,7 @@ export default connect((state, dispatch) => {
         },
       }}
       style={{flex:1}}>
-    </NavigatorIOS>
+    </NavigatorIOSXXX>
   )
 
 })

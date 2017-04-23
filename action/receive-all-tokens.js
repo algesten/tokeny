@@ -16,25 +16,18 @@ export default (rawtokens) => {
 
   return (state) => {
 
-    const tokens = rawtokens.map((raw) => {
-
+    const tokens = rawtokens.map((raw, idx) => {
       try {
         //    {
-        //      type: 'totp',
-        //      account: 'alice@google.com',
-        //      key: 'JBSWY3DPEHPK3PXP',
-        //      issuer: 'Example',
-        //      digits: 6
         //      url: 'otpauth://totp/Example:al...ret=JBSWY3DPEHPK3PXP&issuer=Example'
         //      ordinal: 2
         //    }
-        return Object.assign({}, parse(raw.url), {url:raw.url, ordinal:raw.ordinal || 999})
+        return Object.assign({}, parse(raw.url), {url:raw.url, ordinal:(raw.ordinal || idx)})
       } catch (err) {
         console.log('failed to parse token', raw.url, err.message)
         return null
       }
-
-    }).filter(I)
+    }).filter(I).sort((t1, t2) => t1.ordinal - t2.ordinal)
 
     return {tokens}
 
