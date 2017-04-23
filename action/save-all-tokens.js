@@ -38,5 +38,5 @@ export default (state, dispatch) => {
     dispatch(() => { return {addresult:'Save tokens failed'} })
   })
 
-  return {}
+  return {tokens:tosave}
 }
