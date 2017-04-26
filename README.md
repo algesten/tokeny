@@ -1,6 +1,8 @@
 Tocan
 =====
 
+App for iOS here: https://itunes.apple.com/us/app/tocan/id1226964610?mt=8
+
 (tokeny is the project name)
 
 <img src="https://cloud.githubusercontent.com/assets/227204/25180073/e5391f66-250c-11e7-886d-f54f213ce97c.png" width="150px"/>
