@@ -8,6 +8,10 @@ class TokenViewController: WKInterfaceController {
   @IBOutlet weak var issuerLabel: WKInterfaceLabel!
   @IBOutlet weak var accountLabel: WKInterfaceLabel!
   @IBOutlet weak var passwordLabel: WKInterfaceLabel!
+
+  @IBOutlet weak var passwordSegmentGroup: WKInterfaceGroup!
+  @IBOutlet weak var passwordSegment1Label: WKInterfaceLabel!
+  @IBOutlet weak var passwordSegment2Label: WKInterfaceLabel!
   
   // timer to update the view
   var timer: Timer?
@@ -28,8 +32,23 @@ class TokenViewController: WKInterfaceController {
 
       issuerLabel.setText(token.issuer)
       accountLabel.setText(token.name)
-      passwordLabel.setText(token.currentPassword)
 
+      // if we have exactly 6 digits in this password,
+      // we use the 2 x 3 segments instead of all in one row
+      let isSix = token.currentPassword?.characters.count == 6
+      passwordSegmentGroup.setHidden(!isSix)
+      passwordLabel.setHidden(isSix)
+
+      func update(_ cur:String) {
+        passwordLabel.setText(cur)
+        passwordSegment1Label.setText(cur.substring(from: 0, length: 3))
+        passwordSegment2Label.setText(cur.substring(from: 3))
+      }
+      
+      // run once to set current values
+      let cur = token.currentPassword!
+      update(cur)
+      
       let totpPeriod = 30.0
       
       // helper to start a timer
@@ -48,7 +67,7 @@ class TokenViewController: WKInterfaceController {
           // seems to stop doing anything on stuff uploaded to the app store
           do {
             let txt = try token.generator.password(at:Date())
-            self?.passwordLabel.setText(txt)
+            update(txt)
           } catch {
             print(error)
           }

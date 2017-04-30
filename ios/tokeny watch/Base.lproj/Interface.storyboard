@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
@@ -61,7 +61,25 @@
                                         <label width="1" alignment="left" text="github" textAlignment="center" minimumScaleFactor="0.59999999999999998" id="UXo-RB-K1J">
                                             <color key="textColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <label width="1" height="34" alignment="left" text="888888" textAlignment="center" minimumScaleFactor="0.5" id="QPG-yx-XB8">
+                                        <group height="32" alignment="center" radius="0.0" spacing="4" id="vMK-iC-z7c">
+                                            <items>
+                                                <label alignment="left" verticalAlignment="center" text="888" minimumScaleFactor="0.59999999999999998" id="4u9-ep-HPd">
+                                                    <fontDescription key="font" type="system" weight="thin" pointSize="34"/>
+                                                    <variation key="device=watch42mm">
+                                                        <fontDescription key="font" type="system" weight="thin" pointSize="42"/>
+                                                    </variation>
+                                                </label>
+                                                <label alignment="left" verticalAlignment="center" text="888" minimumScaleFactor="0.59999999999999998" id="iql-Vb-A6S">
+                                                    <fontDescription key="font" type="system" weight="thin" pointSize="34"/>
+                                                    <variation key="device=watch42mm">
+                                                        <fontDescription key="font" type="system" weight="thin" pointSize="42"/>
+                                                    </variation>
+                                                </label>
+                                            </items>
+                                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                            <variation key="device=watch42mm" height="38" spacing="6"/>
+                                        </group>
+                                        <label width="1" height="34" alignment="left" hidden="YES" text="888888" textAlignment="center" minimumScaleFactor="0.5" id="QPG-yx-XB8">
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="font" type="system" weight="thin" pointSize="38"/>
                                             <variation key="device=watch42mm" height="36">
@@ -85,11 +103,14 @@
                         <outlet property="accountLabel" destination="2dd-0s-uKt" id="Co4-2S-CWv"/>
                         <outlet property="issuerLabel" destination="UXo-RB-K1J" id="q3f-Is-H6Q"/>
                         <outlet property="passwordLabel" destination="QPG-yx-XB8" id="1Hx-Ln-6uc"/>
+                        <outlet property="passwordSegment1Label" destination="4u9-ep-HPd" id="jfb-Ik-A6a"/>
+                        <outlet property="passwordSegment2Label" destination="iql-Vb-A6S" id="4ni-Zk-ckO"/>
+                        <outlet property="passwordSegmentGroup" destination="vMK-iC-z7c" id="mwX-A3-Tpc"/>
                         <outlet property="progressGroup" destination="b0P-TF-2wL" id="4f9-3a-RxY"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="292" y="69"/>
+            <point key="canvasLocation" x="301" y="90"/>
         </scene>
     </scenes>
     <color key="tintColor" red="1" green="0.28093579411506653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
